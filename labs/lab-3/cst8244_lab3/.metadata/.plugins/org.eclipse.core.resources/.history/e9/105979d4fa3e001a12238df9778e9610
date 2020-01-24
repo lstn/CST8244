@@ -1,14 +1,14 @@
 /*
- ** partA_sighandler.c -- handles SIGUSR1
+ ** sigint.c -- grabs SIGINT
  *
  * Read:	http://beej.us/guide/bgipc/html/single/bgipc.html#signals
  * Source:	http://beej.us/guide/bgipc/examples/sigint.c
  *
- * Modified by: esti0011@algonquinlive.com
+ * Modified by: hurdleg@algonquincollege.com
  *
  * Usage:
  *  From Momentics IDE, run program; notice PID; enter some text, but don't hit the enter key
- *  At Neutrino prompt, issue the command: kill -s SIGUSR1 <PID>
+ *  At Neutrino prompt, issue the command: kill -s SIGINT <PID>
  *
  */
 
@@ -28,6 +28,7 @@ volatile sig_atomic_t usr1Happened;
  ******************************************************************************/
 int main(void) {
 
+	char s[140];
 	struct sigaction act;
 	sigset_t set;
 
@@ -37,9 +38,9 @@ int main(void) {
 	act.sa_handler = sig_handler;
 	act.sa_mask = set;
 	act.sa_flags = 0; // or SA_RESTART
-	sigemptyset(&act.sa_mask);
+	sigemptyset(&sa.sa_mask);
 
-	if (sigaction(SIGUSR1, &act, NULL) == -1) {
+	if (sigaction(SIGUSR1, &sa, NULL) == -1) {
 		perror("sigaction");
 		exit(1);
 	}

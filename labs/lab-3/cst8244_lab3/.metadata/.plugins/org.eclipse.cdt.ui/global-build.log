@@ -6,3 +6,47 @@ qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partA_sighandler   build/x86_64-debug/
 make -j4 all 
 qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partA_sighandler.d,-MT,build/x86_64-debug/src/partA_sighandler.o -o build/x86_64-debug/src/partA_sighandler.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partA_sighandler.c
 qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partA_sighandler   build/x86_64-debug/src/partA_sighandler.o  
+17:42:28 **** Incremental Build of configuration x86_64-debug for project partA_sighandler ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partA_sighandler.d,-MT,build/x86_64-debug/src/partA_sighandler.o -o build/x86_64-debug/src/partA_sighandler.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partA_sighandler.c
+src/partA_sighandler.c: In function 'main':
+src/partA_sighandler.c:41:15: error: 'sa' undeclared (first use in this function)
+  sigemptyset(&sa.sa_mask);
+               ^
+src/partA_sighandler.c:41:15: note: each undeclared identifier is reported only once for each function it appears in
+src/partA_sighandler.c:32:19: warning: variable 'act' set but not used [-Wunused-but-set-variable]
+  struct sigaction act;
+                   ^
+src/partA_sighandler.c:31:7: warning: unused variable 's' [-Wunused-variable]
+  char s[140];
+       ^
+cc: E:/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/partA_sighandler.o' failed
+make: *** [build/x86_64-debug/src/partA_sighandler.o] Error 1
+17:42:44 **** Incremental Build of configuration x86_64-debug for project partA_sighandler ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partA_sighandler.d,-MT,build/x86_64-debug/src/partA_sighandler.o -o build/x86_64-debug/src/partA_sighandler.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partA_sighandler.c
+src/partA_sighandler.c: In function 'main':
+src/partA_sighandler.c:42:26: error: 'sa' undeclared (first use in this function)
+  if (sigaction(SIGUSR1, &sa, NULL) == -1) {
+                          ^
+src/partA_sighandler.c:42:26: note: each undeclared identifier is reported only once for each function it appears in
+cc: E:/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/partA_sighandler.o' failed
+make: *** [build/x86_64-debug/src/partA_sighandler.o] Error 1
+17:42:56 **** Incremental Build of configuration x86_64-debug for project partA_sighandler ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partA_sighandler.d,-MT,build/x86_64-debug/src/partA_sighandler.o -o build/x86_64-debug/src/partA_sighandler.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partA_sighandler.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partA_sighandler   build/x86_64-debug/src/partA_sighandler.o  
+17:43:24 **** Incremental Build of configuration x86_64-debug for project partA_sighandler ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:46:49 **** Incremental Build of configuration x86_64-debug for project partA_sighandler ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:52:24 **** Incremental Build of configuration x86_64-debug for project partA_sighandler ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+17:53:49 **** Incremental Build of configuration x86_64-debug for project partA_sighandler ****
+make -j4 all 
+make: Nothing to be done for 'all'.
