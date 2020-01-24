@@ -1,0 +1,10 @@
+LaunchTargetManager/com.qnx.tools.ide.target.qconn,192.168.159.128/RELEASE=7.0.0
+LaunchTargetManager/com.qnx.tools.ide.target.qconn,192.168.159.128/arch=x86_64
+LaunchTargetManager/com.qnx.tools.ide.target.qconn,192.168.159.128/os=qnx
+LaunchTargetManager/configs/partA_sighandler=com.qnx.tools.ide.target.qconn\:192.168.159.128
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/partA_sighandler/activeLaunchMode=run
+com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/partA_sighandler/activeLaunchTarget=com.qnx.tools.ide.target.qconn\:192.168.159.128
+configDescList=com.qnx.tools.ide.qde.debug.core.descriptorType.project\:P/partA_sighandler
+eclipse.preferences.version=1
