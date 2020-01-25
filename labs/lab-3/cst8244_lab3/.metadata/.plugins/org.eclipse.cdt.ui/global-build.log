@@ -50,3 +50,324 @@ make: Nothing to be done for 'all'.
 17:53:49 **** Incremental Build of configuration x86_64-debug for project partA_sighandler ****
 make -j4 all 
 make: Nothing to be done for 'all'.
+17:58:12 **** Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:09:19 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:50:31: warning: comparison between pointer and integer
+  if (scanf ("%10d", &numProc) == NULL)
+                               ^
+src/partB_sigproc.c:55:2: warning: statement with no effect [-Wunused-value]
+  for (int i=0; i++; i < numProc) {
+  ^
+src/partB_sigproc.c:56:11: error: 'pid' undeclared (first use in this function)
+   switch (pid = fork()) {
+           ^
+src/partB_sigproc.c:56:11: note: each undeclared identifier is reported only once for each function it appears in
+cc: E:/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/partB_sigproc.o' failed
+make: *** [build/x86_64-debug/src/partB_sigproc.o] Error 1
+18:09:36 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:52:31: warning: comparison between pointer and integer
+  if (scanf ("%10d", &numProc) == NULL)
+                               ^
+src/partB_sigproc.c:57:2: warning: statement with no effect [-Wunused-value]
+  for (int i=0; i++; i < numProc) {
+  ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:12:32 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:56:2: error: expected ';' before 'printf'
+  printf("PID = %d : Parent Running...\n", getpid());
+  ^
+src/partB_sigproc.c:58:2: warning: statement with no effect [-Wunused-value]
+  for (numProc; numProc--; numProc>0) {
+  ^
+src/partB_sigproc.c:58:2: warning: statement with no effect [-Wunused-value]
+cc: E:/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/partB_sigproc.o' failed
+make: *** [build/x86_64-debug/src/partB_sigproc.o] Error 1
+18:13:08 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:58:2: warning: statement with no effect [-Wunused-value]
+  for (; numProc--; numProc>0) {
+  ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:16:00 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:18:17 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:22:02 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:37:13: warning: variable 'wpid' set but not used [-Wunused-but-set-variable]
+  pid_t pid, wpid;
+             ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:24:20 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:37:13: warning: unused variable 'wpid' [-Wunused-variable]
+  pid_t pid, wpid;
+             ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:30:10 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:33:34 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:23: warning: unused variable 'childrenDone' [-Wunused-variable]
+  int numProc, status, childrenDone;
+                       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:34:11 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:23: warning: unused variable 'childrenDone' [-Wunused-variable]
+  int numProc, status, childrenDone;
+                       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:35:37 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:23: warning: unused variable 'childrenDone' [-Wunused-variable]
+  int numProc, status, childrenDone;
+                       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:43:53 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:45:46 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:46:10 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:23: warning: unused variable 'childrenDone' [-Wunused-variable]
+  int numProc, status, childrenDone;
+                       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:46:23 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+18:46:51 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:47:03 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+18:47:46 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:18:54 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:15: warning: unused variable 'status' [-Wunused-variable]
+  int numProc, status, childrenAlive;
+               ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:22:04 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:15: warning: unused variable 'status' [-Wunused-variable]
+  int numProc, status, childrenAlive;
+               ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:23:31 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+19:24:38 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:15: warning: unused variable 'status' [-Wunused-variable]
+  int numProc, status, childrenAlive;
+               ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:32:31 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:38:22: error: storage size of 'inherit' isn't known
+  struct inheritance  inherit;
+                      ^
+src/partB_sigproc.c:84:14: warning: implicit declaration of function 'spawn' [-Wimplicit-function-declaration]
+   if ((pid = spawn("child", 0, NULL, &inherit, args, environ)) == -1)
+              ^
+src/partB_sigproc.c:38:22: warning: unused variable 'inherit' [-Wunused-variable]
+  struct inheritance  inherit;
+                      ^
+src/partB_sigproc.c:36:15: warning: unused variable 'status' [-Wunused-variable]
+  int numProc, status, childrenAlive;
+               ^
+cc: E:/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/partB_sigproc.o' failed
+make: *** [build/x86_64-debug/src/partB_sigproc.o] Error 1
+19:33:50 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:37:15: warning: unused variable 'status' [-Wunused-variable]
+  int numProc, status, childrenAlive;
+               ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:37:48 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_child.d,-MT,build/x86_64-debug/src/partB_child.o -o build/x86_64-debug/src/partB_child.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_child.c
+src/partB_child.c:4:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main(int argc, char **argv)
+ ^
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:37:15: warning: unused variable 'status' [-Wunused-variable]
+  int numProc, status, childrenAlive;
+               ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o build/x86_64-debug/src/partB_child.o  
+build/x86_64-debug/src/partB_child.o: In function `main':
+E:\gitprojs\CST8244\labs\lab-3\cst8244_lab3\partB_sigproc/src/partB_child.c:5: multiple definition of `main'
+build/x86_64-debug/src/partB_sigproc.o:E:\gitprojs\CST8244\labs\lab-3\cst8244_lab3\partB_sigproc/src/partB_sigproc.c:33: first defined here
+cc: E:/qnx700/host/win64/x86_64/usr/bin/x86_64-pc-nto-qnx7.0.0-ld caught signal 1
+Makefile:60: recipe for target 'build/x86_64-debug/partB_sigproc' failed
+make: *** [build/x86_64-debug/partB_sigproc] Error 1
+19:43:33 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:23: warning: unused variable 'childrenDone' [-Wunused-variable]
+  int numProc, status, childrenDone;
+                       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:45:20 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:23: warning: unused variable 'childrenDone' [-Wunused-variable]
+  int numProc, status, childrenDone;
+                       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:47:53 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:36:23: warning: unused variable 'childrenDone' [-Wunused-variable]
+  int numProc, status, childrenDone;
+                       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:51:09 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:37:23: warning: unused variable 'childrenDone' [-Wunused-variable]
+  int numProc, status, childrenDone;
+                       ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:54:33 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:56:11 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:57:43 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+19:58:37 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+20:01:06 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:39:13: warning: variable 'wpid' set but not used [-Wunused-but-set-variable]
+  pid_t pid, wpid;
+             ^
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+20:01:37 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+20:03:27 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:62:5: error: 'childrenAlive' undeclared (first use in this function)
+   ++childrenAlive;
+     ^
+src/partB_sigproc.c:62:5: note: each undeclared identifier is reported only once for each function it appears in
+src/partB_sigproc.c:38:13: warning: variable 'wpid' set but not used [-Wunused-but-set-variable]
+  pid_t pid, wpid;
+             ^
+cc: E:/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/partB_sigproc.o' failed
+make: *** [build/x86_64-debug/src/partB_sigproc.o] Error 1
+20:03:59 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:62:5: error: 'childrenAlive' undeclared (first use in this function)
+   ++childrenAlive;
+     ^
+src/partB_sigproc.c:62:5: note: each undeclared identifier is reported only once for each function it appears in
+cc: E:/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+make: *** [build/x86_64-debug/src/partB_sigproc.o] Error 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/partB_sigproc.o' failed
+20:04:12 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+20:04:15 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+20:04:42 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
+20:05:46 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+src/partB_sigproc.c: In function 'main':
+src/partB_sigproc.c:57:2: error: 'ppid' undeclared (first use in this function)
+  ppid = getpid();
+  ^
+src/partB_sigproc.c:57:2: note: each undeclared identifier is reported only once for each function it appears in
+cc: E:/qnx700/host/win64/x86_64/usr/lib/gcc/x86_64-pc-nto-qnx7.0.0/5.4.0/cc1 caught signal 1
+Makefile:55: recipe for target 'build/x86_64-debug/src/partB_sigproc.o' failed
+make: *** [build/x86_64-debug/src/partB_sigproc.o] Error 1
+20:05:56 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+20:06:43 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+qcc -Vgcc_ntox86_64 -c -Wp,-MMD,build/x86_64-debug/src/partB_sigproc.d,-MT,build/x86_64-debug/src/partB_sigproc.o -o build/x86_64-debug/src/partB_sigproc.o  -Wall -fmessage-length=0 -g -O0 -fno-builtin  src/partB_sigproc.c
+qcc -Vgcc_ntox86_64 -o build/x86_64-debug/partB_sigproc   build/x86_64-debug/src/partB_sigproc.o  
+20:08:31 **** Incremental Build of configuration x86_64-debug for project partB_sigproc ****
+make -j4 all 
+make: Nothing to be done for 'all'.
