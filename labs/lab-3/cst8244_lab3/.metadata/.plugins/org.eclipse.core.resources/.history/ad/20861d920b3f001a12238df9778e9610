@@ -1,8 +1,0 @@
-#include <stdio.h>
-#include <unistd.h>
-
-main(int argc, char **argv)
-{
-    printf("pausing, terminate me somehow\n");
-    pause();
-}
