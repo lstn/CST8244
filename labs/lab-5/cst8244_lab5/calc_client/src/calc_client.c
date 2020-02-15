@@ -71,5 +71,5 @@ int main(int argc, char* argv[]) {
 void show_usage(void) {
 	printf("   USAGE:\n");
 	printf("./calc_client <server-pid> <left-operand> <operator> <right-operand>\n");
-	printf("The <operator> argument MUST be one of ‘+’, ‘-’, ‘x’, and ‘/’.\n");
+	printf("The <operator> argument MUST be one of '+', '-', 'x', and '/'.\n");
 }
