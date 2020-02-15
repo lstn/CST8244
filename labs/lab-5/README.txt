@@ -1,4 +1,4 @@
-# Lucas Estienne's CST8244 Lab 4 - Threads
+# Lucas Estienne's CST8244 Lab 5 - Message Passing
 ## Status
 The calc_client builds successfully, includes calc_message with relative path,
 processes all the required command line arguments, calls ConnectAttach() with the right args,
