@@ -6,10 +6,10 @@ struct person {
 	int id;
 	int weight;
 	int state;
-} typedef Person;
+} typedef person_t;
 
 struct controller_response {
-	Person person;
+	person_t person;
 	char errorMsg[128];
 } typedef controller_response_t;
 
@@ -18,57 +18,57 @@ typedef void *(*StateFunc)();
 #define NUM_STATES 15
 typedef enum
 {
-	START = 0,
-	READY = 1,
-	LEFT_SCAN = 2,
-	RIGHT_SCAN = 3,
-	WEIGHT_SCALE = 4,
-	LEFT_OPEN = 5,
-	RIGHT_OPEN = 6,
-	LEFT_CLOSED = 7,
-	RIGHT_CLOSED = 8,
-	GUARD_RIGHT_LOCK = 9,
-	GUARD_RIGHT_UNLOCK = 10,
-	GUARD_LEFT_LOCK = 11,
-	GUARD_LEFT_UNLOCK = 12,
-	EXIT = 13,
-	STOP = 14
+	ST_START = 0,
+	ST_READY = 1,
+	ST_LEFT_SCAN = 2,
+	ST_RIGHT_SCAN = 3,
+	ST_WEIGHT_SCALE = 4,
+	ST_LEFT_OPEN = 5,
+	ST_RIGHT_OPEN = 6,
+	ST_LEFT_CLOSED = 7,
+	ST_RIGHT_CLOSED = 8,
+	ST_GUARD_RIGHT_LOCK = 9,
+	ST_GUARD_RIGHT_UNLOCK = 10,
+	ST_GUARD_LEFT_LOCK = 11,
+	ST_GUARD_LEFT_UNLOCK = 12,
+	ST_EXIT = 13,
+	ST_STOP = 14
 } State;
 
 #define NUM_INPUTS 12
 typedef enum
 {
-	LEFT_SCAN = 0,
-	RIGHT_SCAN = 1,
-	WEIGHT_SCALE = 2,
-	LEFT_OPEN = 3,
-	RIGHT_OPEN = 4,
-	LEFT_CLOSED = 5,
-	RIGHT_CLOSED = 6,
-	GUARD_RIGHT_LOCK = 7,
-	GUARD_RIGHT_UNLOCK = 8,
-	GUARD_LEFT_LOCK = 9,
-	GUARD_LEFT_UNLOCK = 10,
-	EXIT = 11
+	IN_LEFT_SCAN = 0,
+	IN_RIGHT_SCAN = 1,
+	IN_WEIGHT_SCALE = 2,
+	IN_LEFT_OPEN = 3,
+	IN_RIGHT_OPEN = 4,
+	IN_LEFT_CLOSED = 5,
+	IN_RIGHT_CLOSED = 6,
+	IN_GUARD_RIGHT_LOCK = 7,
+	IN_GUARD_RIGHT_UNLOCK = 8,
+	IN_GUARD_LEFT_LOCK = 9,
+	IN_GUARD_LEFT_UNLOCK = 10,
+	IN_EXIT = 11
 } Input;
 
 #define NUM_OUTPUTS 14
 typedef enum
 {
-	START = 0,
-	READY = 1,
-	SCAN = 2,
-	WEIGHT_SCALE = 3,
-	LEFT_OPEN = 4,
-	RIGHT_OPEN = 5,
-	LEFT_CLOSED = 6,
-	RIGHT_CLOSED = 7,
-	GUARD_RIGHT_LOCK = 8,
-	GUARD_RIGHT_UNLOCK = 9,
-	GUARD_LEFT_LOCK = 10,
-	GUARD_LEFT_UNLOCK = 11,
-	EXIT = 12,
-	STOP = 13
+	OUT_START = 0,
+	OUT_READY = 1,
+	OUT_SCAN = 2,
+	OUT_WEIGHT_SCALE = 3,
+	OUT_LEFT_OPEN = 4,
+	OUT_RIGHT_OPEN = 5,
+	OUT_LEFT_CLOSED = 6,
+	OUT_RIGHT_CLOSED = 7,
+	OUT_GUARD_RIGHT_LOCK = 8,
+	OUT_GUARD_RIGHT_UNLOCK = 9,
+	OUT_GUARD_LEFT_LOCK = 10,
+	OUT_GUARD_LEFT_UNLOCK = 11,
+	OUT_EXIT = 12,
+	OUT_STOP = 13
 } Output;
 
 const char *outMessage[NUM_OUTPUTS] = {
