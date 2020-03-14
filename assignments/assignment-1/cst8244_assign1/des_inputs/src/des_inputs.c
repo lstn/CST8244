@@ -1,13 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <process.h>
+#include <string.h>
+#include <errno.h>
+#include <sys/neutrino.h>
+#include <sys/netmgr.h>
+#include <float.h>
+#include <limits.h>
 
+#include "../../des_controller/src/des.h"
 void show_usage(void);
 
 int main(int argc, char* argv[]) {
 
 	pid_t cpid;
 	int conn;
-	person_t msg;
+	person_t person_msg;
 	controller_response_t resp;
 	char event[128];
 
@@ -39,15 +47,42 @@ int main(int argc, char* argv[]) {
 			exit(EXIT_FAILURE);
 		}
 
-		if ((strcmp(event, inMessage[IN_LEFT_SCAN]) == 0)
-				|| (strcmp(event, inMessage[IN_RIGHT_SCAN]) == 0)) {
-
+		if (strcmp(event, inMessage[IN_LEFT_SCAN]) == 0){
+			person_msg.state = ST_LEFT_SCAN;
+			printf(outMessage[OUT_SCAN]);
+			scanf("%d", &person_msg.id);
+			printf("Person scanned ID. ID = %d \n", person_msg.id);
+		} else if (strcmp(event, inMessage[IN_RIGHT_SCAN]) == 0){
+			person_msg.state = ST_RIGHT_SCAN;
+			printf(outMessage[OUT_SCAN]);
+			scanf("%d", &person_msg.id);
+			printf("Person scanned ID. ID = %d \n", person_msg.id);
 		} else if (strcmp(event, inMessage[IN_WEIGHT_SCALE]) == 0) {
-
-		} // all the other elif shit
+			printf(outMessage[OUT_WEIGHT_SCALE]);
+			scanf("%d", &person_msg.weight);
+			printf("Person weighed. Weight = %d \n", person_msg.weight);
+		} else if (strcmp(event, inMessage[IN_LEFT_OPEN]) == 0) {
+			person_msg.state = ST_LEFT_OPEN;
+		} else if (strcmp(event, inMessage[IN_RIGHT_OPEN]) == 0) {
+			person_msg.state = ST_RIGHT_OPEN;
+		} else if (strcmp(event, inMessage[IN_LEFT_CLOSED]) == 0) {
+			person_msg.state = ST_LEFT_CLOSED;
+		} else if (strcmp(event, inMessage[IN_RIGHT_CLOSED]) == 0) {
+			person_msg.state = ST_RIGHT_CLOSED;
+		} else if (strcmp(event, inMessage[IN_GUARD_RIGHT_LOCK]) == 0) {
+			person_msg.state = ST_GUARD_RIGHT_LOCK;
+		} else if (strcmp(event, inMessage[IN_GUARD_RIGHT_UNLOCK]) == 0) {
+			person_msg.state = ST_GUARD_RIGHT_UNLOCK;
+		} else if (strcmp(event, inMessage[IN_GUARD_LEFT_LOCK]) == 0) {
+			person_msg.state = ST_GUARD_LEFT_LOCK;
+		} else if (strcmp(event, inMessage[IN_GUARD_LEFT_UNLOCK]) == 0) {
+			person_msg.state = ST_GUARD_LEFT_UNLOCK;
+		} else if (strcmp(event, inMessage[IN_EXIT]) == 0) {
+			person_msg.state = ST_EXIT;
+		}
 
 		// send message
-		if (MsgSend(conn, &msg, sizeof(msg), &resp, sizeof(resp)) == -1) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
 			fprintf(stderr, "ERROR: Could not send message.\n");
 			exit(EXIT_FAILURE);
 		}

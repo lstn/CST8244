@@ -10,6 +10,7 @@ struct person {
 
 struct controller_response {
 	person_t person;
+	int statusCode;
 	char errorMsg[128];
 } typedef controller_response_t;
 
