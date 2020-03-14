@@ -49,18 +49,15 @@ int main(int argc, char* argv[]) {
 
 		if (strcmp(event, inMessage[IN_LEFT_SCAN]) == 0){
 			person_msg.state = ST_LEFT_SCAN;
-			printf(outMessage[OUT_SCAN]);
+			printf("Enter the Person's ID: ");
 			scanf("%d", &person_msg.id);
-			printf("Person scanned ID. ID = %d \n", person_msg.id);
 		} else if (strcmp(event, inMessage[IN_RIGHT_SCAN]) == 0){
 			person_msg.state = ST_RIGHT_SCAN;
-			printf(outMessage[OUT_SCAN]);
+			printf("Enter the Person's ID: ");
 			scanf("%d", &person_msg.id);
-			printf("Person scanned ID. ID = %d \n", person_msg.id);
 		} else if (strcmp(event, inMessage[IN_WEIGHT_SCALE]) == 0) {
-			printf(outMessage[OUT_WEIGHT_SCALE]);
+			printf("Enter the Person's Weight: ");
 			scanf("%d", &person_msg.weight);
-			printf("Person weighed. Weight = %d \n", person_msg.weight);
 		} else if (strcmp(event, inMessage[IN_LEFT_OPEN]) == 0) {
 			person_msg.state = ST_LEFT_OPEN;
 		} else if (strcmp(event, inMessage[IN_RIGHT_OPEN]) == 0) {

@@ -11,7 +11,7 @@
 
 int main(void) {
 
-	person_t person;
+	person_t person_msg;
 	controller_response_t resp;
 	int chan, rec;
 
@@ -27,35 +27,45 @@ int main(void) {
 
 	// loop
 	while(1) {
-		rec = MsgReceive(chan, (void*)&msg, sizeof(msg), NULL);
+		rec = MsgReceive(chan, (void*)&person_msg, sizeof(person_msg), NULL);
 
-		if (rcvid == 0) {
-			switch (person.state) {
+		if (rec == 0) {
+			switch (person_msg.state) {
 				case ST_LEFT_SCAN:
-					break;
 				case ST_RIGHT_SCAN:
+					printf("%s %d \n", outMessage[OUT_SCAN], person_msg.id);
 					break;
 				case ST_WEIGHT_SCALE:
+					printf("%s %d \n", outMessage[OUT_WEIGHT_SCALE], person_msg.id);
 					break;
 				case ST_LEFT_OPEN:
+					printf(outMessage[OUT_LEFT_OPEN]);
 					break;
 				case ST_RIGHT_OPEN:
+					printf(outMessage[OUT_RIGHT_OPEN]);
 					break;
 				case ST_LEFT_CLOSED:
+					printf(outMessage[OUT_LEFT_CLOSED]);
 					break;
 				case ST_RIGHT_CLOSED:
+					printf(outMessage[OUT_RIGHT_CLOSED]);
 					break;
 				case ST_GUARD_RIGHT_LOCK:
+					printf(outMessage[OUT_GUARD_RIGHT_LOCK]);
 					break;
 				case ST_GUARD_RIGHT_UNLOCK:
+					printf(outMessage[OUT_GUARD_RIGHT_UNLOCK]);
 					break;
 				case ST_GUARD_LEFT_LOCK:
+					printf(outMessage[OUT_GUARD_LEFT_LOCK]);
 					break;
 				case ST_GUARD_LEFT_UNLOCK:
+					printf(outMessage[OUT_GUARD_LEFT_UNLOCK]);
 					break;
 				case ST_EXIT:
+					printf(outMessage[OUT_EXIT]);
+					printf(outMessage[OUT_STOP]);
 					return EXIT_SUCCESS;
-					break;
 				default:
 					printf("Invalid Command\n");
 					break;
@@ -66,7 +76,7 @@ int main(void) {
 		MsgReply(rec, EOK, &resp, sizeof(resp));
 	}
 
-	if (resp.error != EOK) {
+	if (resp.statusCode != EOK) {
 		printf("ERROR: %s", resp.errorMsg);
 	}
 

@@ -75,9 +75,9 @@ typedef enum
 const char *outMessage[NUM_OUTPUTS] = {
 	"The controller is running as PID: ",
 	"Waiting for Person... ",
-	"Enter the Person's ID: ",
-	"Enter the Person's Weight: ",
-	"Person opened left door. ",
+	"Person scanned ID. ID =",
+	"Person weighed. Weight =",
+	"Person opened left door.",
 	"Person opened right door.",
 	"Person closed left door. ",
 	"Person closed right door. ",
