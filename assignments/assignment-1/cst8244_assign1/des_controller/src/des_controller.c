@@ -10,7 +10,6 @@
 
 void show_usage(void);
 
-void *init_state();
 void *ready_state();
 void *left_scan();
 void *right_scan();
@@ -23,16 +22,17 @@ void *guard_right_lock();
 void *guard_right_unlock();
 void *guard_left_lock();
 void *guard_left_unlock();
-void *exit_state();
+void exit_state();
 
-controller_response_t response;
-person_t person;
+controller_response_t resp;
+person_t person_msg;
 int conn;
-StateFunc statefunc = init_state;
+StateFunc statefunc = ready_state;
 
 int main(int argc, char* argv[]) {
 
 	pid_t dpid;
+	int chan, rec;
 
 	if(argc != 2 ){
 		fprintf(stderr, "ERROR: You must provide all required arguments.\n");
@@ -42,7 +42,39 @@ int main(int argc, char* argv[]) {
 
 	dpid = atoi(argv[1]);
 
-	puts("Hello World!!!"); /* prints Hello World!!! */
+	// create channel
+	chan = ChannelCreate (0);
+	if (chan == -1) {
+		fprintf (stderr, "ERROR: Could not create channel.\n");
+		exit (EXIT_FAILURE);
+	}
+
+	// connect to des_display
+	conn = ConnectAttach(ND_LOCAL_NODE, dpid, 1, _NTO_SIDE_CHANNEL, 0);
+	if(conn == -1) {
+		fprintf (stderr, "ERROR: Could not connect to the des_display. Did you specify the right PID?\n");
+		exit (EXIT_FAILURE);
+	}
+
+	// print pid
+	printf("The controller is running as PID: %d \n",getpid());
+
+	while(1) {
+		rec = MsgReceive(chan, (void*)&person_msg, sizeof(person_msg), NULL);
+
+		if (person_msg.state == ST_EXIT) {
+			exit_state();
+		}
+
+		statefunc = (StateFunc)(*statefunc)();
+
+		// send answer back
+		resp.statusCode = EOK;
+		MsgReply(rec, EOK, &resp, sizeof(resp));
+	}
+
+	ChannelDestroy(chan);
+	ConnectDetach(conn);
 	return EXIT_SUCCESS;
 }
 
@@ -50,3 +82,121 @@ void show_usage(void) {
 	printf("   USAGE:\n");
 	printf("./des_controller <display-pid>\n");
 }
+
+void *ready_state() {
+	person_msg.id = 0;
+	person_msg.weight = 0;
+	person_msg.state = ST_READY;
+
+	if (person_msg.state == ST_LEFT_SCAN) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+			fprintf(stderr, "ERROR: Could not send message.\n");
+			exit(EXIT_FAILURE);
+		}
+		return left_scan;
+	}
+
+	else if (person_msg.state == ST_RIGHT_SCAN) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+				fprintf(stderr, "ERROR: Could not send message.\n");
+				exit(EXIT_FAILURE);
+		}
+		return right_scan;
+	}
+	return ready_state;
+}
+
+void *left_scan() {
+	//action required for this state
+	if (person_msg.state == ST_GUARD_LEFT_UNLOCK) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+				fprintf(stderr, "ERROR: Could not send message.\n");
+				exit(EXIT_FAILURE);
+		}
+		return guard_left_unlock;
+	}
+
+	return left_scan;
+}
+
+void *right_scan() {
+	if (person_msg.state == ST_GUARD_RIGHT_UNLOCK) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+				fprintf(stderr, "ERROR: Could not send message.\n");
+				exit(EXIT_FAILURE);
+		}
+		return guard_right_unlock;
+	}
+	return right_scan;
+}
+
+void *weight_scale() {
+	if (person_msg.state == ST_LEFT_CLOSED) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+				fprintf(stderr, "ERROR: Could not send message.\n");
+				exit(EXIT_FAILURE);
+		}
+		return left_close;
+	} else if (person_msg.state == ST_RIGHT_CLOSED) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+				fprintf(stderr, "ERROR: Could not send message.\n");
+				exit(EXIT_FAILURE);
+		}
+		return right_close;
+	}
+	return weight_scan;
+}
+
+void *left_open() {
+	if (!person.weight) {
+		if (person_msg.state == ST_WEIGHT_SCALE) {
+			if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+				fprintf(stderr, "ERROR: Could not send message.\n");
+				exit(EXIT_FAILURE);
+			}
+			return weight_scale;
+		}
+		return left_open;
+	}
+
+	if (person_msg.state == ST_LEFT_CLOSED) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+			fprintf(stderr, "ERROR: Could not send message.\n");
+			exit(EXIT_FAILURE);
+		}
+		return left_close;
+	}
+	return left_open;
+}
+
+void *right_open() {
+	if (!person.weight) {
+		if (person_msg.state == ST_WEIGHT_SCALE) {
+			if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+				fprintf(stderr, "ERROR: Could not send message.\n");
+				exit(EXIT_FAILURE);
+			}
+			return weight_scale;
+		}
+		return right_open;
+	}
+
+	if (person_msg.state == ST_RIGHT_CLOSED) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+			fprintf(stderr, "ERROR: Could not send message.\n");
+			exit(EXIT_FAILURE);
+		}
+		return right_close;
+	}
+	return right_open;
+}
+
+void exit_state() {
+	person_msg.state = ST_EXIT;
+	if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+		fprintf(stderr, "ERROR: Could not send message.\n");
+		exit(EXIT_FAILURE);
+	}
+	exit(EXIT_SUCCESS);
+}
+
