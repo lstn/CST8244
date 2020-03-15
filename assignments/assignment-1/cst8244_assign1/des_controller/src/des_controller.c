@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
 	person_msg.weight = 0;
 	person_msg.state = ST_READY;
 
-	while(person_msg.state != ST_STOP) {
+	while(1) {
 		rec = MsgReceive(chan, (void*)&person_msg, sizeof(person_msg), NULL);
 
 		// printf("%d - %d - %d\n", person_msg.id, person_msg.weight, person_msg.state);
@@ -77,8 +77,10 @@ int main(int argc, char* argv[]) {
 		// send answer back
 		resp.statusCode = EOK;
 		MsgReply(rec, EOK, &resp, sizeof(resp));
+		if (person_msg.state == ST_STOP) {
+			break;
+		}
 	}
-	sleep(0.5);
 
 	ChannelDestroy(chan);
 	ConnectDetach(conn);
@@ -158,7 +160,6 @@ void *left_open() {
 		}
 		return weight_scale;
 	}
-	return left_open;
 
 	if (person_msg.state == ST_LEFT_CLOSED) {
 		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
@@ -171,15 +172,12 @@ void *left_open() {
 }
 
 void *right_open() {
-	if (!person_msg.weight) {
-		if (person_msg.state == ST_WEIGHT_SCALE) {
-			if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
-				fprintf(stderr, "ERROR: Could not send message.\n");
-				exit(EXIT_FAILURE);
-			}
-			return weight_scale;
+	if (person_msg.state == ST_WEIGHT_SCALE) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+			fprintf(stderr, "ERROR: Could not send message.\n");
+			exit(EXIT_FAILURE);
 		}
-		return right_open;
+		return weight_scale;
 	}
 
 	if (person_msg.state == ST_RIGHT_CLOSED) {

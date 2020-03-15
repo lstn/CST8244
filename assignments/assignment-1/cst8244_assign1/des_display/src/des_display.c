@@ -64,7 +64,7 @@ int main(void) {
 				break;
 			case ST_EXIT:
 				printf("%s \n", outMessage[OUT_EXIT]);
-				printf(outMessage[OUT_STOP]);
+				printf("%s \n", outMessage[OUT_STOP]);
 				break;
 			default:
 				printf("Invalid input\n");
