@@ -6,6 +6,7 @@
 #include <sys/neutrino.h>
 #include <float.h>
 #include <limits.h>
+#include <unistd.h>
 
 #include "../../des_controller/src/des.h"
 
@@ -26,7 +27,7 @@ int main(void) {
 	printf("The display is running as PID: %d\n", getpid());
 
 	// loop
-	while(1) {
+	while(person_msg.state != ST_STOP) {
 		rec = MsgReceive(chan, (void*)&person_msg, sizeof(person_msg), NULL);
 
 		switch (person_msg.state) {
@@ -64,8 +65,7 @@ int main(void) {
 			case ST_EXIT:
 				printf("%s \n", outMessage[OUT_EXIT]);
 				printf(outMessage[OUT_STOP]);
-				MsgReply(rec, EOK, &resp, sizeof(resp));
-				return EXIT_SUCCESS;
+				break;
 			default:
 				printf("Invalid input\n");
 				break;
@@ -74,6 +74,7 @@ int main(void) {
 		// send answer back
 		MsgReply(rec, EOK, &resp, sizeof(resp));
 	}
+	sleep(0.5);
 
 	if (resp.statusCode != EOK) {
 		printf("ERROR: %s", resp.errorMsg);

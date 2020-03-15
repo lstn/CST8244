@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
 	person_msg.weight = 0;
 	person_msg.state = ST_READY;
 
-	while(1) {
+	while(person_msg.state != ST_STOP) {
 		rec = MsgReceive(chan, (void*)&person_msg, sizeof(person_msg), NULL);
 
 		// printf("%d - %d - %d\n", person_msg.id, person_msg.weight, person_msg.state);
@@ -77,11 +77,8 @@ int main(int argc, char* argv[]) {
 		// send answer back
 		resp.statusCode = EOK;
 		MsgReply(rec, EOK, &resp, sizeof(resp));
-		// graceful exit
-		if (person_msg.state == ST_STOP) {
-			break;
-		}
 	}
+	sleep(0.5);
 
 	ChannelDestroy(chan);
 	ConnectDetach(conn);

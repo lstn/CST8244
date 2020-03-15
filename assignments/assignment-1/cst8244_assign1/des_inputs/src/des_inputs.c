@@ -108,6 +108,7 @@ int main(int argc, char* argv[]) {
 			printf("ERROR: Message from server: %s", resp.errorMsg);
 		}
 	}
+	sleep(0.5);
 
 	// disconnect from calc_server
 	ConnectDetach(conn);
