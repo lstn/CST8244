@@ -79,6 +79,11 @@ int main(int argc, char* argv[]) {
 		MsgReply(rec, EOK, &resp, sizeof(resp));
 		if (person_msg.state == ST_STOP) {
 			break;
+		} else if (person_msg.state == ST_GUARD_RIGHT_LOCK
+					|| person_msg.state == ST_GUARD_LEFT_LOCK) {
+			person_msg.id = 0;
+			person_msg.weight = 0;
+			person_msg.state = ST_READY;
 		}
 	}
 
