@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <errno.h>
 #include <process.h>
+#include <unistd.h>
 #include <sys/neutrino.h>
 #include <sys/netmgr.h>
 
@@ -23,7 +24,7 @@ void *guard_right_lock();
 void *guard_right_unlock();
 void *guard_left_lock();
 void *guard_left_unlock();
-void exit_state();
+void *exit_state();
 
 controller_response_t resp;
 person_t person_msg;
@@ -59,10 +60,14 @@ int main(int argc, char* argv[]) {
 
 	// print pid
 	printf("The controller is running as PID: %d \n",getpid());
+	person_msg.id = 0;
+	person_msg.weight = 0;
+	person_msg.state = ST_READY;
 
 	while(1) {
 		rec = MsgReceive(chan, (void*)&person_msg, sizeof(person_msg), NULL);
 
+		// printf("%d - %d - %d\n", person_msg.id, person_msg.weight, person_msg.state);
 		if (person_msg.state == ST_EXIT) {
 			exit_state();
 		}
@@ -72,6 +77,10 @@ int main(int argc, char* argv[]) {
 		// send answer back
 		resp.statusCode = EOK;
 		MsgReply(rec, EOK, &resp, sizeof(resp));
+		// graceful exit
+		if (person_msg.state == ST_STOP) {
+			break;
+		}
 	}
 
 	ChannelDestroy(chan);
@@ -85,9 +94,6 @@ void show_usage(void) {
 }
 
 void *ready_state() {
-	person_msg.id = 0;
-	person_msg.weight = 0;
-	person_msg.state = ST_READY;
 
 	if (person_msg.state == ST_LEFT_SCAN) {
 		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
@@ -108,7 +114,6 @@ void *ready_state() {
 }
 
 void *left_scan() {
-	//action required for this state
 	if (person_msg.state == ST_GUARD_LEFT_UNLOCK) {
 		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
 				fprintf(stderr, "ERROR: Could not send message.\n");
@@ -149,16 +154,14 @@ void *weight_scale() {
 }
 
 void *left_open() {
-	if (!person_msg.weight) {
-		if (person_msg.state == ST_WEIGHT_SCALE) {
-			if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
-				fprintf(stderr, "ERROR: Could not send message.\n");
-				exit(EXIT_FAILURE);
-			}
-			return weight_scale;
+	if (person_msg.state == ST_WEIGHT_SCALE) {
+		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
+			fprintf(stderr, "ERROR: Could not send message.\n");
+			exit(EXIT_FAILURE);
 		}
-		return left_open;
+		return weight_scale;
 	}
+	return left_open;
 
 	if (person_msg.state == ST_LEFT_CLOSED) {
 		if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
@@ -262,12 +265,14 @@ void *guard_left_unlock() {
 	return guard_left_unlock;
 }
 
-void exit_state() {
+void *exit_state() {
 	person_msg.state = ST_EXIT;
 	if (MsgSend(conn, &person_msg, sizeof(person_msg), &resp, sizeof(resp)) == -1) {
 		fprintf(stderr, "ERROR: Could not send message.\n");
 		exit(EXIT_FAILURE);
 	}
-	exit(EXIT_SUCCESS);
+	sleep(5);
+	person_msg.state = ST_STOP;
+	return exit_state;
 }
 
